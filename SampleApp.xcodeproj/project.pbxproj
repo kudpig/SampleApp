@@ -15,6 +15,7 @@
 		8FF9552225CB97A80071FC03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FF9552025CB97A80071FC03 /* LaunchScreen.storyboard */; };
 		8FF9552D25CB97A80071FC03 /* SampleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9552C25CB97A80071FC03 /* SampleAppTests.swift */; };
 		8FF9553825CB97A80071FC03 /* SampleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9553725CB97A80071FC03 /* SampleAppUITests.swift */; };
+		8FF9554925CC0B6D0071FC03 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9554825CC0B6D0071FC03 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		8FF9553325CB97A80071FC03 /* SampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF9553725CB97A80071FC03 /* SampleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleAppUITests.swift; sourceTree = "<group>"; };
 		8FF9553925CB97A80071FC03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FF9554825CC0B6D0071FC03 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				8FF9551525CB97A60071FC03 /* AppDelegate.swift */,
 				8FF9551725CB97A60071FC03 /* SceneDelegate.swift */,
 				8FF9551925CB97A60071FC03 /* ViewController.swift */,
+				8FF9554825CC0B6D0071FC03 /* Colors.swift */,
 				8FF9551B25CB97A60071FC03 /* Main.storyboard */,
 				8FF9551E25CB97A80071FC03 /* Assets.xcassets */,
 				8FF9552025CB97A80071FC03 /* LaunchScreen.storyboard */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF9551A25CB97A60071FC03 /* ViewController.swift in Sources */,
+				8FF9554925CC0B6D0071FC03 /* Colors.swift in Sources */,
 				8FF9551625CB97A60071FC03 /* AppDelegate.swift in Sources */,
 				8FF9551825CB97A60071FC03 /* SceneDelegate.swift in Sources */,
 			);
