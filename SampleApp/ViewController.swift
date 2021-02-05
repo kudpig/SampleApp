@@ -68,9 +68,24 @@ class ViewController: UIViewController {
         setLabel("退院者数", size: size, centerX: rightX, y: 220, font: labelFont, color: color, contentView)
         
         let height = view.frame.size.height / 2
+        setButton("健康管理", size: size, y: height + 190, color: colors.blue, parentView: view)
+        setButton("県別状況", size: size, y: height + 240, color: colors.blue, parentView: view)
     }
     
     
+    // ボタンのメソッド
+    func setButton(_ title: String, size: CGSize, y: CGFloat, color: UIColor, parentView: UIView) {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.frame.size = size
+        button.center.x = view.center.x // パーツの中心のx座標...ボタンの中心=viewの中心という定義
+        // NSAttributedString...文字列に特殊な加工をできる。今回は文字感覚を設定
+        let attributedTitle = NSAttributedString(string: title, attributes: [NSAttributedString.Key.kern: 8.0])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.frame.origin.y = y
+        button.setTitleColor(color, for: .normal)
+        parentView.addSubview(button)
+    }
     
     // ラベルのメソッド
     func setLabel(_ text: String, size: CGSize, centerX: CGFloat, y: CGFloat, font: UIFont, color: UIColor, _ parentView: UIView) {
