@@ -47,6 +47,29 @@ class ViewController: UIViewController {
         view.addSubview(contentView)
         // contentViewの背景色。上半分はレイヤー指定されており、ここでは下半分に色をつけていることになる。
         view.backgroundColor = .systemGray6
+        
+        let labelFont = UIFont.systemFont(ofSize: 15, weight: .heavy)
+        let size = CGSize(width: 150, height: 50)
+        let color = colors.bluePurple
+        let leftX = view.frame.size.width * 0.33
+        let rightX = view.frame.size.width * 0.80
+        setLabel("PCR数", size: size, centerX: leftX, y: 20, font: labelFont, color: color, contentView)
+        setLabel("感染者数", size: size, centerX: rightX, y: 20, font: labelFont, color: color, contentView)
+        setLabel("入院者数", size: size, centerX: leftX, y: 120, font: labelFont, color: color, contentView)
+        setLabel("重症者数", size: size, centerX: rightX, y: 120, font: labelFont, color: color, contentView)
+        setLabel("死者数", size: size, centerX: leftX, y: 220, font: labelFont, color: color, contentView)
+        setLabel("退院者数", size: size, centerX: rightX, y: 220, font: labelFont, color: color, contentView)
+    }
+    
+    func setLabel(_ text: String, size: CGSize, centerX: CGFloat, y: CGFloat, font: UIFont, color: UIColor, _ parentView: UIView) {
+        let label = UILabel()
+        label.text = text
+        label.frame.size = size
+        label.center.x = centerX
+        label.frame.origin.y = y
+        label.font = font
+        label.textColor = color
+        parentView.addSubview(label)
     }
     
 }
