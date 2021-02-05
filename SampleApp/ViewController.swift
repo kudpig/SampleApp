@@ -53,14 +53,26 @@ class ViewController: UIViewController {
         let color = colors.bluePurple
         let leftX = view.frame.size.width * 0.33
         let rightX = view.frame.size.width * 0.80
+        setLabel("Covid in Japan",
+                 size: CGSize(width: 180, height: 35),
+                 centerX: view.center.x - 20,
+                 y: -60,
+                 font: .systemFont(ofSize: 25, weight: .heavy),
+                 color: .white,
+                 contentView)
         setLabel("PCR数", size: size, centerX: leftX, y: 20, font: labelFont, color: color, contentView)
         setLabel("感染者数", size: size, centerX: rightX, y: 20, font: labelFont, color: color, contentView)
         setLabel("入院者数", size: size, centerX: leftX, y: 120, font: labelFont, color: color, contentView)
         setLabel("重症者数", size: size, centerX: rightX, y: 120, font: labelFont, color: color, contentView)
         setLabel("死者数", size: size, centerX: leftX, y: 220, font: labelFont, color: color, contentView)
         setLabel("退院者数", size: size, centerX: rightX, y: 220, font: labelFont, color: color, contentView)
+        
+        let height = view.frame.size.height / 2
     }
     
+    
+    
+    // ラベルのメソッド
     func setLabel(_ text: String, size: CGSize, centerX: CGFloat, y: CGFloat, font: UIFont, color: UIColor, _ parentView: UIView) {
         let label = UILabel()
         label.text = text
