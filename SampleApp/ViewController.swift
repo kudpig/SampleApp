@@ -71,13 +71,15 @@ class ViewController: UIViewController {
         setButton("健康管理", size: size, y: height + 190, color: colors.blue, parentView: view)
         setButton("県別状況", size: size, y: height + 240, color: colors.blue, parentView: view)
         
-        // ④のチャットボタン ※xはframe.originに代入される。画面サイズ分の数値(画面右端)から-50px左に貼り付けられることで、
-        //                 常に画面右上に表示させるよう調整している。
+        // ④のチャットボタン ※xはframe.originに代入される。
+        // 画面サイズ分の数値(画面右端)から-50px左に貼り付けられることで、常に画面右上に表示させるよう調整している。
         setImageButton("chat", x: view.frame.size.width - 50).addTarget(self, action: #selector(chatAction), for: .touchDown)
+        
+        // ⑤のリロードボタン
+        setImageButton("reload", x: 10).addTarget(self, action: #selector(reloadAction), for: .touchDown)
     }
     
-    
-    // ④のチャットボタン
+    // ④・⑤のチャット/リロードボタンのメソッド
     func setImageButton(_ name: String, x: CGFloat) -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: name), for: .normal)
@@ -89,6 +91,10 @@ class ViewController: UIViewController {
     }
     @objc func chatAction() {
         print("タップchat")
+    }
+    @objc func reloadAction() {
+        loadView()
+        viewDidLoad()
     }
     
     
