@@ -29,6 +29,8 @@ class HealthCheckViewController: UIViewController {
         let calender = FSCalendar()
         calender.frame = CGRect(x: 20, y: 10, width: view.frame.size.width - 40, height: 300)
         scrollView.addSubview(calender)
+        calender.appearance.headerTitleColor = colors.bluePurple
+        calender.appearance.weekdayTextColor = colors.bluePurple
         
         // 健康チェックラベル
         let checkLabel = UILabel()
