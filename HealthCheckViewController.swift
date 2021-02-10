@@ -31,6 +31,7 @@ class HealthCheckViewController: UIViewController {
         scrollView.addSubview(calender)
         calender.appearance.headerTitleColor = colors.bluePurple
         calender.appearance.weekdayTextColor = colors.bluePurple
+        calender.delegate = self
         
         // 健康チェックラベル
         let checkLabel = UILabel()
@@ -133,16 +134,46 @@ class HealthCheckViewController: UIViewController {
         print("resultButtonTapped")
     }
     
+}
+
+
+
+// カレンダーの見た目変更
+extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // podsのFSCalendarが備えている機能を追加している。fillDefaultColorForでretrunするプロパティの指定。
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        return .clear
     }
-    */
-
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+        if dateFormatter(day: date) == dateFormatter(day: Date()) {
+            return colors.bluePurple
+        }
+        return .clear
+    }
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderRadiusFor date: Date) -> CGFloat {
+        return 0.5
+    }
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        // 曜日で色を変える
+        if judgeWeekday(date) == 1 {
+            return UIColor(red: 150/255, green: 30/255, blue: 0/255, alpha: 0.9)
+        } else if judgeWeekday(date) == 7 {
+            return UIColor(red: 0/255, green: 30/255, blue: 150/255, alpha: 0.9)
+        }
+        return colors.black
+    }
+    
+    // 日付フォーマット
+    func dateFormatter(day: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: day)
+    }
+    // 曜日フォーマット
+    func judgeWeekday(_ date: Date) -> Int {
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.component(.weekday, from: date)
+    }
+    
 }
