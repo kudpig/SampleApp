@@ -12,6 +12,7 @@ import CalculateCalendarLogic
 class HealthCheckViewController: UIViewController {
     
     let colors = Colors()
+    var point = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,9 +118,9 @@ class HealthCheckViewController: UIViewController {
     // スイッチアクションの設定
     @objc func switchAction(sender: UISwitch) {
         if sender.isOn {
-            print("on")
+            point += 1
         } else {
-            print("off")
+            point -= 1
         }
     }
     // スイッチのUI
