@@ -156,9 +156,11 @@ class HealthCheckViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             })
-            
-            
-        })
+            // 診断結果をローカルに保存
+            UserDefaults.standard.set(resultTitle, forKey: self.today)
+        }) // ここまでがyseActionのクロージャ内
+        
+        
         let noAction = UIAlertAction(title: "キャンセル", style: .destructive, handler: nil)
         alert.addAction(yesAction)
         alert.addAction(noAction)
