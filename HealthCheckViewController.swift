@@ -13,12 +13,14 @@ class HealthCheckViewController: UIViewController {
     
     let colors = Colors()
     var point = 0
+    var today = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemGroupedBackground
+        today = dateFormatter(day: Date())
         
         //スクロールビューの設定
         let scrollView = UIScrollView()
@@ -133,7 +135,34 @@ class HealthCheckViewController: UIViewController {
     
     // 診断完了ボタンのアクション設定
     @objc func resultButtonAction() {
-        print("resultButtonTapped")
+        let alert = UIAlertController(title: "診断を完了しますか？", message: "診断は1日に1回までです", preferredStyle: .actionSheet)
+        let yesAction = UIAlertAction(title: "完了", style: .default, handler: { action in
+            var resultTitle = ""
+            var resultMessage = ""
+            // クロージャの外部の変数を参照するにはselfの記述が必要
+            if self.point >= 4 {
+                resultTitle = "高"
+                resultMessage = "感染している可能性が\n比較的高いです。\nPCR検査をしましょう。"
+            } else if self.point >= 2 {
+                resultTitle = "中"
+                resultMessage = "やや感染している可能性が\nあります。外出は控えましょう。"
+            } else {
+                resultTitle = "低"
+                resultMessage = "感染している可能性が\n今のところ低いです。\n今後も気をつけましょう。"
+            }
+            let alert = UIAlertController(title: "感染している可能性「\(resultTitle)」", message: resultMessage, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+            
+            
+        })
+        let noAction = UIAlertAction(title: "キャンセル", style: .destructive, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -148,7 +177,7 @@ extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, F
         return .clear
     }
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-        if dateFormatter(day: date) == dateFormatter(day: Date()) {
+        if dateFormatter(day: date) == today {
             return colors.bluePurple
         }
         return .clear
