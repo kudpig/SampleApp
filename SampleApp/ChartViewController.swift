@@ -22,6 +22,8 @@ class ChartViewController: UIViewController {
         gradientLayer.endPoint = CGPoint.init(x: 1, y: 1)
         view.layer.insertSublayer(gradientLayer, at: 0) // レイヤはviewには載せらせない。階層0に差し込み。
         
+        view.backgroundColor = .systemGroupedBackground
+        
         // 上部ボタンのview(装飾)
         let backButton = UIButton(type: .system)
         backButton.frame = CGRect(x: 10, y: 30, width: 20, height: 20)
@@ -48,7 +50,20 @@ class ChartViewController: UIViewController {
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : colors.bluePurple], for: .normal)
         segment.addTarget(self, action: #selector(switchAction), for: .valueChanged)
         view.addSubview(segment)
+        
+        // サーチバーの設置
+        let searchBar = UISearchBar()
+        searchBar.frame = CGRect(x: 10, y: 100, width: view.frame.size.width - 20, height: 20)
+        searchBar.delegate = self
+        searchBar.placeholder = "都道府県を漢字で入力"
+        searchBar.showsCancelButton = true
+        searchBar.tintColor = colors.blue
+        view.addSubview(searchBar)
+        
+        
+        
     }
+    
     
     // 画面上部のボタン２つのアクション
     @objc func backButtonAction() {
@@ -72,5 +87,16 @@ class ChartViewController: UIViewController {
         }
     }
     
+}
 
+//MARK: UISearchBarDelegate
+// サーチバーのデリゲートに準拠させる
+extension ChartViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("検索ボタンをタップ")
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("キャンセルボタンをタップ")
+    }
 }
