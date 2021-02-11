@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         
         let height = view.frame.size.height / 2
         setButton("健康管理", size: size, y: height + 190, color: colors.blue, parentView: view).addTarget(self, action: #selector(goHealthCheck), for: .touchDown)
-        //setButton("県別状況", size: size, y: height + 240, color: colors.blue, parentView: view)
+        setButton("県別状況", size: size, y: height + 240, color: colors.blue, parentView: view).addTarget(self, action: #selector(goChart), for: .touchDown)
         
         // ④のチャットボタン ※xはframe.originに代入される。
         // 画面サイズ分の数値(画面右端)から-50px左に貼り付けられることで、常に画面右上に表示させるよう調整している。
@@ -161,6 +161,10 @@ class ViewController: UIViewController {
     // 健康管理への画面遷移メソッド
     @objc func goHealthCheck() {
         performSegue(withIdentifier: "goHealthCheck", sender: nil)
+    }
+    
+    @objc func goChart() {
+        performSegue(withIdentifier: "goChart", sender: nil)
     }
     
     
