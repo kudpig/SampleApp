@@ -38,6 +38,16 @@ class ChartViewController: UIViewController {
         nextButton.titleLabel?.font = .systemFont(ofSize: 20)
         nextButton.addTarget(self, action: #selector(goCircle), for: .touchUpInside)
         view.addSubview(nextButton)
+        
+        // 上部の切り替えバーの設置
+        let segment = UISegmentedControl(items: ["感染者数", "PCR数", "死者数"])
+        segment.frame = CGRect(x: 10, y: 70, width: view.frame.size.width - 20, height: 20)
+        segment.selectedSegmentTintColor = colors.blue
+        segment.selectedSegmentIndex = 0
+        segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : colors.bluePurple], for: .normal)
+        segment.addTarget(self, action: #selector(switchAction), for: .valueChanged)
+        view.addSubview(segment)
     }
     
     // 画面上部のボタン２つのアクション
@@ -48,6 +58,19 @@ class ChartViewController: UIViewController {
         print("tappedNextButton")
     }
 
+    // 切り替えバーのメソッド
+    @objc func switchAction(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("感染者数")
+        case 1:
+            print("PCR数")
+        case 2:
+            print("死者数")
+        default:
+            break
+        }
+    }
     
 
 }
