@@ -36,6 +36,7 @@ class HealthCheckViewController: UIViewController {
         calender.appearance.headerTitleColor = colors.bluePurple
         calender.appearance.weekdayTextColor = colors.bluePurple
         calender.delegate = self
+        calender.dataSource = self
         
         // 健康チェックラベル
         let checkLabel = UILabel()
@@ -85,6 +86,14 @@ class HealthCheckViewController: UIViewController {
         resultButton.backgroundColor = colors.blue
         resultButton.addTarget(self, action: #selector(resultButtonAction), for: [.touchUpInside, .touchUpOutside])
         scrollView.addSubview(resultButton)
+    
+        // 診断済みの場合はボタン押せなくする処理
+        if UserDefaults.standard.string(forKey: today) != nil {
+            resultButton.isEnabled = false
+            resultButton.setTitle("診断済み", for: .normal)
+            resultButton.backgroundColor = .white
+            resultButton.setTitleColor(.gray, for: .normal)
+        }
         
     }
     
@@ -222,6 +231,18 @@ extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, F
         let holiday = CalculateCalendarLogic()
         let judgeHoliday = holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
         return judgeHoliday
+    }
+    
+    // 診断結果を表示
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        if let result = UserDefaults.standard.string(forKey: dateFormatter(day: date)) {
+            return result
+        }
+        return ""
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {
+        return .init(red: 0, green: 0, blue: 0, alpha: 0.7)
     }
     
 }
